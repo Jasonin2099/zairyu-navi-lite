@@ -1,0 +1,8 @@
+{
+  "name": "zairyu-navi-lite",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Static guide to Japan residence procedures (ja/zh/en)",
+  "license": "MIT",
+  "scripts": { "validate": "node scripts/validate.js", "test": "node scripts/validate.js && node --test test/" }
+}
