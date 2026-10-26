@@ -12,3 +12,11 @@ input[type=date]{font:inherit;padding:8px;border-radius:10px;border:1px solid #8
 .sub{display:none;padding:0 0 8px 24px;font-size:13px;color:var(--sub)}.sub.on{display:block}select{font:inherit;padding:6px;border-radius:10px;background:none;color:inherit}
 .docs li{list-style:none;margin-left:-18px}.docs input{margin-right:6px}.done{text-decoration:line-through;opacity:.6}
 .btn{border:0;border-radius:12px;background:var(--ac);color:#fff;font:inherit;font-weight:700;padding:12px 16px;margin:8px 0;cursor:pointer}.btn.ghost{background:var(--card);color:var(--ink)}
+@media print{
+  :root{--bg:#fff;--card:#fff;--ink:#000;--sub:#333;--ac:#000;--red:#000}
+  header nav,#plans,.btn,input[type=date]{display:none!important}
+  body{font-size:11pt}main{max-width:none;padding:0}
+  .card{border:1px solid #999;border-radius:6px;break-inside:avoid;page-break-inside:avoid;margin:6px 0}
+  .card a::after{content:" (" attr(href) ")";word-break:break-all}
+  .docs input{appearance:none;-webkit-appearance:none;width:10px;height:10px;border:1px solid #000}
+}
