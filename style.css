@@ -8,3 +8,6 @@ main{max-width:640px;margin:0 auto;padding:0 16px 48px}h1{font-size:24px;margin:
 input[type=date]{font:inherit;padding:8px;border-radius:10px;border:1px solid #8884;background:none;color:inherit;margin-top:4px}
 .card h2{font-size:16px;margin:0 0 4px}.dl{color:var(--ac);font-weight:600}.bad{color:var(--red);font-weight:600}
 .card ul{padding-left:18px;margin:6px 0;color:var(--sub);font-size:14px}.card a{font-size:12px;color:var(--sub)}.note{font-size:12px;color:var(--sub)}
+.sec{font-size:13px;color:var(--sub);font-weight:600;margin-bottom:6px}.opt{display:block;padding:6px 0;cursor:pointer}
+.sub{display:none;padding:0 0 8px 24px;font-size:13px;color:var(--sub)}.sub.on{display:block}select{font:inherit;padding:6px;border-radius:10px;background:none;color:inherit}
+.docs li{list-style:none;margin-left:-18px}.docs input{margin-right:6px}.done{text-decoration:line-through;opacity:.6}

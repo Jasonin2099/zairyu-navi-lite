@@ -5,8 +5,20 @@
 <main>
 <h1 data-i="h1"></h1><p class="lead" data-i="lead"></p>
 <div class="card"><label for="exp" data-i="exp"></label><input type="date" id="exp"></div>
+<div class="card" id="plans">
+ <div class="sec" data-i="plans"></div>
+ <label class="opt"><input type="checkbox" data-sc="grad"> <span data-i="grad"></span></label>
+ <div class="sub" data-for="grad"><span data-i="gradd"></span> <input type="date" data-d="grad">
+  <select id="plan"><option value="job" data-i="pjob"></option><option value="hunt" data-i="phunt"></option><option value="home" data-i="phome"></option></select></div>
+ <label class="opt"><input type="checkbox" data-sc="job"> <span data-i="job"></span></label>
+ <div class="sub" data-for="job"><span data-i="quit"></span> <input type="date" data-d="quit"></div>
+ <label class="opt"><input type="checkbox" data-sc="move"> <span data-i="move"></span></label>
+ <div class="sub" data-for="move"><span data-i="moved"></span> <input type="date" data-d="move"></div>
+ <label class="opt"><input type="checkbox" data-sc="trip"> <span data-i="trip"></span></label>
+ <div class="sub" data-for="trip"><span data-i="out"></span> <input type="date" data-d="out"> <span data-i="back"></span> <input type="date" data-d="back"></div>
+</div>
 <div id="out"></div>
-<p class="note" data-i="disc"></p>
+<p class="note"><span data-i="disc"></span><br><span data-i="priv"></span></p>
 </main>
 <script src="data.js"></script><script src="app.js"></script>
 </body></html>
