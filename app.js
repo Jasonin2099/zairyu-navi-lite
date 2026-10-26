@@ -9,15 +9,13 @@
   var $=function(s){return document.querySelector(s)},$$=function(s){return document.querySelectorAll(s)};
   function save(){S.lang=L;localStorage.setItem(K,JSON.stringify(S))}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
-  function fmt(d){return d.toISOString().slice(0,10)}
-  function D(s){return s?new Date(s):null}
-  function add(d,days,months){var x=new Date(d);if(days)x.setDate(x.getDate()+days);if(months)x.setMonth(x.getMonth()+months);return x}
+  var Z=ZLdates,fmt=Z.fmt,D=Z.parse;
   // Compute {from,due} for a procedure given current inputs; exported for ics/tests.
   function timing(p,exp,d){
     var r={};
-    if(p.opensMonthsBefore&&exp){r.from=add(exp,0,-p.opensMonthsBefore);r.due=exp}
+    if(p.opensMonthsBefore&&exp){r.from=Z.addMonths(exp,-p.opensMonthsBefore);r.due=exp}
     else if(p.dueFrom==="expiry")r.due=exp;
-    else if(p.dueFrom&&d[p.dueFrom]){r.due=add(D(d[p.dueFrom]),p.dueDays,p.dueMonths);if(p.dueMonths&&exp&&exp<r.due)r.due=exp}
+    else if(p.dueFrom&&D(d[p.dueFrom])){var b=D(d[p.dueFrom]);r.due=p.dueMonths?Z.addMonths(b,p.dueMonths):Z.addDays(b,p.dueDays||0);if(p.dueMonths&&exp&&exp<r.due)r.due=exp}
     return r;
   }
   function active(){return PROCEDURES.filter(function(p){
