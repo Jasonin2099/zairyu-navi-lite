@@ -4,5 +4,5 @@
   "private": true,
   "description": "Static guide to Japan residence procedures (ja/zh/en)",
   "license": "MIT",
-  "scripts": { "validate": "node scripts/validate.js", "test": "node scripts/validate.js && node --test test/" }
+  "scripts": { "validate": "node scripts/validate.js", "test": "node scripts/validate.js && node --test" }
 }
