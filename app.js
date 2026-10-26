@@ -28,10 +28,10 @@
     $$("#lang button").forEach(function(b){b.classList.toggle("on",b.dataset.l===L)});
     $$("[data-sc]").forEach(function(c){c.checked=!!S.sc[c.dataset.sc];$('[data-for="'+c.dataset.sc+'"]').classList.toggle("on",c.checked)});
     $$("[data-d]").forEach(function(i){i.value=S.d[i.dataset.d]||""});$("#plan").value=S.plan||"job";$("#exp").value=S.exp||"";
-    var exp=D(S.exp),today=new Date(fmt(new Date())),h=exp?"":'<div class="card"><span class="bad">'+t.need+'</span></div>';
+    var exp=D(S.exp),today=Z.today(),h=exp?"":'<div class="card"><span class="bad">'+t.need+'</span></div>';
     active().map(function(p){return{p:p,r:timing(p,exp,S.d)}}).sort(function(a,b){return(a.r.due||8e15)-(b.r.due||8e15)}).forEach(function(o){
       var p=o.p,r=o.r;h+='<div class="card"><h2>'+esc(p.name[L])+'</h2>';
-      if(r.due){var n=Math.round((r.due-today)/864e5);
+      if(r.due){var n=Z.daysBetween(today,r.due);
         h+='<div>'+(r.from?t.from+': <b>'+fmt(r.from)+'</b> / ':'')+t.until+': <b>'+fmt(r.due)+'</b> '+(n<0?'<span class="bad">'+t.over+'</span>':'<span class="dl">'+t.left.replace("{n}",n)+'</span>')+'</div>'}
       if(p.id==="special-reentry"&&r.due&&S.d.back&&D(S.d.back)>r.due)h+='<div class="bad">'+t.late+'</div>';
       h+='<p>'+esc(p.summary[L])+'</p>';
