@@ -1,8 +1,9 @@
 // Procedure data. Every fact comes from the official 出入国在留管理庁 (ISA) pages in `src`.
-// Last checked: 2026-10-24. Not legal advice.
+// Last checked: 2026-11-15. Not legal advice.
 // Fields: id, name, summary, notes[], docs[] (ja/zh/en), src[], optional:
 //   opensMonthsBefore (renewal window), dueDays + dueFrom (deadline N days after a user date), scenario.
 var ISA = "https://www.moj.go.jp/isa/";
+var FEE_SRC = ISA + "01_00644.html"; // fee revision of 2026-10-01
 var PROCEDURES = [
   {
     id: "renewal", scenario: "base",
@@ -14,16 +15,16 @@ var PROCEDURES = [
       en: "To stay past the expiry with the same status. Apply at the regional immigration office for your address, or online. Standard processing: 2 weeks to 1 month."
     },
     notes: {
-      ja: ["在留期間が6か月以上の方は、期限の3か月前から申請できます。", "期限までに申請すれば、結果が出るまで（最長で期限から2か月）は在留できます（特例期間）。", "手数料は許可期間で異なります（例：窓口・1年 33,000円）。"],
-      zh: ["在留期间6个月以上者，可在到期前3个月起申请。", "期限前提交申请的话，在出结果前（最长到期后2个月）可以合法居留（特例期间）。", "手续费因许可期间而异（例：窗口・1年 33,000日元）。"],
-      en: ["If your period of stay is 6 months or more, you can apply from 3 months before expiry.", "If you apply before expiry, you may stay until the decision, up to 2 months after expiry (special period).", "Fee depends on the period granted (e.g. counter, 1 year: ¥33,000)."]
+      ja: ["在留期間が6か月以上の方は、期限の3か月前から申請できます。", "期限までに申請すれば、結果が出るまで（最長で期限から2か月）は在留できます（特例期間）。", "手数料は許可される在留期間で異なります（例：1年なら窓口 33,000円、オンライン 27,000円＋決済手数料）。2026年9月30日までに受付された申請は旧額（窓口 6,000円）。", "オンライン申請の手数料はコンビニ決済・銀行決済で納付（収入印紙は不可）。窓口申請は収入印紙。"],
+      zh: ["在留期间6个月以上者，可在到期前3个月起申请。", "期限前提交申请的话，在出结果前（最长到期后2个月）可以合法居留（特例期间）。", "手续费按获批的在留期间而定（例：1年为窗口 33,000日元，在线 27,000日元＋支付手续费）。2026年9月30日前受理的申请按旧额（窗口 6,000日元）。", "在线申请的手续费通过便利店或银行支付（不能用收入印纸）；窗口申请用收入印纸。"],
+      en: ["If your period of stay is 6 months or more, you can apply from 3 months before expiry.", "If you apply before expiry, you may stay until the decision, up to 2 months after expiry (special period).", "The fee depends on the period granted (e.g. 1 year: ¥33,000 at a counter, ¥27,000 online plus a payment fee). Applications received by 30 Sep 2026 pay the old fee (¥6,000 at a counter).", "Online applications pay by convenience store or bank transfer (no revenue stamps); counter applications pay with revenue stamps."]
     },
     docs: {
       ja: ["在留期間更新許可申請書", "写真1葉", "パスポート・在留カード（提示）", "在留資格ごとの資料（公式ページで確認）"],
       zh: ["在留期间更新许可申请书", "照片1张", "护照、在留卡（出示）", "各资格对应的材料（以官方页面为准）"],
       en: ["Application form", "1 photo", "Passport and residence card (shown)", "Documents for your status (see official page)"]
     },
-    src: [ISA + "applications/procedures/16-3.html"]
+    src: [ISA + "applications/procedures/16-3.html", FEE_SRC]
   },
   {
     id: "parttime", scenario: "base",
@@ -65,13 +66,17 @@ var PROCEDURES = [
       zh: "变更为与工作内容相符的工作签证（如技术·人文知识·国际业务）。须在现有期限前申请。",
       en: "Change to a work status matching the job (e.g. Engineer/Specialist in Humanities/International Services). Apply before your current expiry."
     },
-    notes: { ja: [], zh: [], en: [] },
+    notes: {
+      ja: ["手数料は許可される在留期間で異なります（窓口 10,000円〜75,000円。例：1年なら窓口 33,000円、オンライン 27,000円）。"],
+      zh: ["手续费按获批的在留期间而定（窗口 10,000〜75,000日元。例：1年为窗口 33,000日元，在线 27,000日元）。"],
+      en: ["The fee depends on the period granted (¥10,000–¥75,000 at a counter; e.g. 1 year: ¥33,000 at a counter, ¥27,000 online)."]
+    },
     docs: {
       ja: ["在留資格変更許可申請書", "写真1葉", "パスポート・在留カード（提示）", "就職先・学歴に関する資料（公式ページで確認）"],
       zh: ["在留资格变更许可申请书", "照片1张", "护照、在留卡（出示）", "就职单位及学历相关材料（以官方页面为准）"],
       en: ["Application form", "1 photo", "Passport and residence card (shown)", "Employer and education documents (see official page)"]
     },
-    src: [ISA + "applications/procedures/16-2.html"]
+    src: [ISA + "applications/procedures/16-2.html", FEE_SRC]
   },
   {
     id: "jobhunt", scenario: "grad", plan: "hunt", dueFrom: "expiry",
@@ -81,13 +86,17 @@ var PROCEDURES = [
       zh: "毕业后继续求职时办理。在留期间6个月，可再更新1次，毕业后最长1年。条件包括毕业前已开始求职等。毕业前凭推荐信和预计毕业证明也可申请。",
       en: "To keep job hunting after graduation: 6 months, renewable once, up to 1 year after graduation. You must have been job hunting before graduating, among other conditions. Can apply before graduation with a recommendation and expected-graduation certificate."
     },
-    notes: { ja: [], zh: [], en: [] },
+    notes: {
+      ja: ["手数料は許可される在留期間で異なります（例：6か月なら窓口 18,000円、オンライン 15,000円）。"],
+      zh: ["手续费按获批的在留期间而定（例：6个月为窗口 18,000日元，在线 15,000日元）。"],
+      en: ["The fee depends on the period granted (e.g. 6 months: ¥18,000 at a counter, ¥15,000 online)."]
+    },
     docs: {
       ja: ["在留資格変更許可申請書", "写真1葉", "大学の推薦状", "卒業証書（写し）又は卒業証明書", "経費支弁能力を証する文書", "就職活動を続けていることの資料"],
       zh: ["在留资格变更许可申请书", "照片1张", "大学推荐信", "毕业证书（复印件）或毕业证明", "经费支付能力证明", "正在求职的证明材料"],
       en: ["Application form", "1 photo", "Recommendation from your school", "Diploma (copy) or graduation certificate", "Proof of ability to pay expenses", "Proof of ongoing job hunting"]
     },
-    src: [ISA + "applications/status/designatedactivities14.html", ISA + "applications/resources/nyukan_nyukan84.html"]
+    src: [ISA + "applications/status/designatedactivities14.html", ISA + "applications/resources/nyukan_nyukan84.html", FEE_SRC]
   },
   {
     id: "go-home", scenario: "grad", plan: "home", dueFrom: "expiry",

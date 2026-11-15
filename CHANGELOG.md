@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+- Fees: renewal and change-of-status items now show the fees in force since 2026-10-01 (counter and online), the old-fee rule for applications received by 30 Sep 2026, and the new online payment method; each links the ISA fee revision page
+- Test: any item that quotes a fee must cite the fee revision page
+
 ## 0.2.1 — 2026-10-27
 - Fixed: a renewal window for an expiry on the 31st opened on the 3rd of the month instead of the last day of the month 3 months earlier (05-31 → 02-28)
 - Fixed: "days left" was one too high between midnight and 09:00 in Japan

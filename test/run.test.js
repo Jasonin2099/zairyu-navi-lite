@@ -17,3 +17,9 @@ test("ics all-day event ends the next day even across a DST change", () => {
   const out = ics.build([{ id: "a", date: new Date("2027-03-14"), title: "t", url: "u" }], "20261026T000000Z");
   assert.match(out, /DTSTART;VALUE=DATE:20270314\r\nDTEND;VALUE=DATE:20270315/);
 });
+test("every fee amount cites the 2026-10-01 fee revision page", () => {
+  P.forEach((p) => {
+    const text = JSON.stringify([p.summary, p.notes]);
+    if (/円|日元|¥/.test(text)) assert.ok(p.src.some((u) => u.endsWith("/01_00644.html")), p.id + " mentions a fee without the fee source");
+  });
+});
