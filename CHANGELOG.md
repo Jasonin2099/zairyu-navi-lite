@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.2.2 — 2026-11-20
 - Fees: renewal and change-of-status items now show the fees in force since 2026-10-01 (counter and online), the old-fee rule for applications received by 30 Sep 2026, and the new online payment method; each links the ISA fee revision page
 - Test: any item that quotes a fee must cite the fee revision page
 
